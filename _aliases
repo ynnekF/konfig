@@ -32,6 +32,8 @@ alias hgrep="fc -El 0 | grep"
 # Formatting 
 alias sfmt="shfmt -ci -w"
 
+alias gemini="npx https://github.com/google-gemini/gemini-cli"
+
 #=======================================================================#
 #                               Kubernetes                              #
 #=======================================================================#
