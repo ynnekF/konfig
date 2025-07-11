@@ -1,7 +1,6 @@
 #=======================================================================#
 #                                 Aliases                               #
 #=======================================================================#
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -12,6 +11,7 @@
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias NE="2>/dev/null"
+alias refresh="source $HOME/.zshrc"
 
 # File size depth=1
 alias dud="du -d 1 -h"
@@ -29,11 +29,9 @@ alias sgrep="grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}"
 alias h="history"
 alias hgrep="fc -El 0 | grep"
 
-
 #=======================================================================#
 #                               Kubernetes                              #
 #=======================================================================#
-
 alias k='kubectl'
 alias kx='kubectx'
 alias kn='kubens'
@@ -102,5 +100,4 @@ alias kru='kubectl rollout undo'
 alias ksd='kubectl scale deployment'
 alias ksss='kubectl scale statefulset'
 alias kwgp='watch "kubectl get pods"'
-
 alias clusters='kubectl config get-clusters | sort | grep -Ev "fqdn|NAME"; f() { if [[ -n "$1" ]]; then kcuc "$1"; fi; unset -f f; }; f'

@@ -91,7 +91,7 @@ SOLARIZED_THEME="dark"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aliases jump themes)
+plugins=(git aliases jump themes zoxide)
 
 if [[ -f $ZSH/oh-my-zsh.sh ]]; then
         echo "Sourcing oh-my-zsh"
