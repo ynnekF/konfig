@@ -120,3 +120,5 @@ _include "$KONFIG_DIR/_custom"
 #                             Environment                               #
 #=======================================================================#
 export PATH="$HOME/bin:$PATH"
+
+eval "$(zoxide init zsh)"
