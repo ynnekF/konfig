@@ -1,0 +1,21 @@
+parse_git_branch() {
+    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
+}
+
+COLOR_DEF='%f'
+COLOR_USR='%F{243}'
+COLOR_DIR='%F{197}'
+COLOR_GIT='%F{128}'
+COLOR_PINK='%F{200}'
+COLOR_GREEN='%F{10}'
+COLOR_YELLOW='%F{11}'
+NEWLINE=$'\n'
+
+COLOR_RED='%F{#cc241d}'
+
+# Only run this if we're actually in Zsh
+if [[ -n "$ZSH_VERSION" ]]; then
+  setopt PROMPT_SUBST
+fi
+
+export PROMPT='${COLOR_YELLOW}$(parse_git_branch) %F{#bb3629}%1d > ${COLOR_DEF}'

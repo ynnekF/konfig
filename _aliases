@@ -1,0 +1,87 @@
+#=======================================================================#
+#                                 Aliases                               #
+#=======================================================================#
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+#=======================================================================#
+#                               Kubernetes                              #
+#=======================================================================#
+
+alias k='kubectl'
+alias kx='kubectx'
+alias kn='kubens'
+alias kaf='kubectl apply -f'
+alias kccc='kubectl config current-context'
+alias kcdc='kubectl config delete-context'
+alias kcgc='kubectl config get-contexts'
+alias kclegend='alias |\grep "kubectl "'
+alias kcn='kubectl config set-context $(kubectl config current-context) --namespace'
+alias kcp='kubectl cp'
+alias kcsc='kubectl config set-context'
+alias kcuc='kubectl config use-context'
+alias kdcm='kubectl describe configmap'
+alias kdd='kubectl describe deployment'
+alias kdel='kubectl delete'
+alias kdelcm='kubectl delete configmap'
+alias kdeld='kubectl delete deployment'
+alias kdelf='kubectl delete -f'
+alias kdeli='kubectl delete ingress'
+alias kdelno='kubectl delete node'
+alias kdelns='kubectl delete namespace'
+alias kdelp='kubectl delete pods'
+alias kdelpvc='kubectl delete pvc'
+alias kdels='kubectl delete svc'
+alias kdelsec='kubectl delete secret'
+alias kdelss='kubectl delete statefulset'
+alias kdi='kubectl describe ingress'
+alias kdno='kubectl describe node'
+alias kdns='kubectl describe namespace'
+alias kdp='kubectl describe pods'
+alias kdpvc='kubectl describe pvc'
+alias kds='kubectl describe svc'
+alias kdsec='kubectl describe secret'
+alias kdss='kubectl describe statefulset'
+alias kecm='kubectl edit configmap'
+alias ked='kubectl edit deployment'
+alias kei='kubectl edit ingress'
+alias keno='kubectl edit node'
+alias kens='kubectl edit namespace'
+alias kep='kubectl edit pods'
+alias kepvc='kubectl edit pvc'
+alias kes='kubectl edit svc'
+alias kess='kubectl edit statefulset'
+alias keti='kubectl exec -ti'
+alias kga='kubectl get all'
+alias kgaa='kubectl get all --all-namespaces'
+alias kgcm='kubectl get configmaps'
+alias kgd='kubectl get deployment'
+alias kgi='kubectl get ingress'
+alias kgno='kubectl get nodes'
+alias kgns='kubectl get namespaces'
+alias kgp='kubectl get pods'
+alias kgpvc='kubectl get pvc'
+alias kgpw='kubectl get pods -o wide'
+alias kgrs='kubectl get rs'
+alias kgs='kubectl get svc'
+alias kgsec='kubectl get secret'
+alias kgss='kubectl get statefulset'
+alias kl='kubectl logs'
+alias klf='kubectl logs -f'
+alias kpf='kubectl port-forward'
+alias krh='kubectl rollout history'
+alias krsd='kubectl rollout status deployment'
+alias krsss='kubectl rollout status statefulset'
+alias kru='kubectl rollout undo'
+alias ksd='kubectl scale deployment'
+alias ksss='kubectl scale statefulset'
+alias kwgp='watch "kubectl get pods"'
+
+alias clusters='kubectl config get-clusters | sort | grep -Ev "fqdn|NAME"; f() { if [[ -n "$1" ]]; then kcuc "$1"; fi; unset -f f; }; f'
