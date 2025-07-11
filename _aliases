@@ -11,6 +11,25 @@
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias NE="2>/dev/null"
+
+# File size depth=1
+alias dud="du -d 1 -h"
+
+# Find directory with given name
+alias fd="find . -type d -name"
+
+# Find file with given name
+alias ff="find . -type f -name"
+
+# File searching
+alias sgrep="grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}"
+
+# History searching
+alias h="history"
+alias hgrep="fc -El 0 | grep"
+
+
 #=======================================================================#
 #                               Kubernetes                              #
 #=======================================================================#

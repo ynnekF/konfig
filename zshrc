@@ -4,11 +4,13 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# Oh-My-Zsh
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
 ZSH_THEME="gruvbox"
 SOLARIZED_THEME="dark"
 
@@ -79,25 +81,26 @@ SOLARIZED_THEME="dark"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Git Guardian Setup
-# curl -1sLf \
-#  'https://dl.cloudsmith.io/public/gitguardian/ggshield/setup.deb.sh' \
-#  | sudo -E bash
-
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load?
+#=======================================================================#
+#                            External Plugins                           #
+#=======================================================================#
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aliases jump)
+plugins=(git aliases jump themes)
 
 if [[ -f $ZSH/oh-my-zsh.sh ]]; then
+        echo "Sourcing oh-my-zsh"
         source $ZSH/oh-my-zsh.sh
 fi
 
+#=======================================================================#
+#                            Internal Plugins                           #
+#=======================================================================#
 
 function _include() {
   if [[ -f "$1" ]]; then
@@ -109,7 +112,6 @@ function _include() {
 }
 
 KONFIG_DIR="$HOME/konfig"
-
 _include "$KONFIG_DIR/_prompt"
 _include "$KONFIG_DIR/_aliases"
 _include "$KONFIG_DIR/_custom"
@@ -117,8 +119,4 @@ _include "$KONFIG_DIR/_custom"
 #=======================================================================#
 #                             Environment                               #
 #=======================================================================#
-#export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2/libexec/openjdk.jdk/Contents/Home
-#export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-#export PATH=$PATH:$(go env GOPATH)/bin
-
 export PATH="$HOME/bin:$PATH"
