@@ -11,17 +11,27 @@ declare -r CYAN='\033[0;36m'
 declare -r RED='\033[0;31m'
 declare -r NC='\033[0m'
 
-declare -- KONFIG_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-declare -r BACKUP_DIR="$KONFIG_DIR/backups"
-declare -i DRY=0
-
 function info() {
 	local message="$1" && echo -e "${message}"
+}
+
+function debug() {
+	echo -e "${GREEN}$1${NC}"
 }
 
 function warn() {
 	local message="$1" && echo -e "${YELLOW}${message}${NC}"
 }
+
+# Base directory of the konfig repo.
+declare -- KONFIG_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Subdirectory where backups are stored.
+declare -r BACKUP_DIR="$KONFIG_DIR/backups"
+
+# Script settings.
+declare -i CHECKSUMS=0
+declare -i DRY=0
 
 echo -e "${CYAN}"
 echo "╔══════════════════════════════════════════════╗"
@@ -39,6 +49,9 @@ info "backup directory --> $BACKUP_DIR"
 
 while :; do
 	case "${1:-}" in
+		--checksums | -c)
+			CHECKSUMS=1
+			;;
 		--dry | -d)
 			DRY=1
 			;;
@@ -56,6 +69,9 @@ SYMLINK_FILES=(
 	zshrc
 	init.vim
 )
+
+warn "\nProcessing.."
+printf ">> [%s]\n" "${SYMLINK_FILES[@]}" && echo ""
 
 for file in "${SYMLINK_FILES[@]}"; do
 	source=$(basename "$file")
@@ -75,20 +91,33 @@ for file in "${SYMLINK_FILES[@]}"; do
 	if [[ -f "$destination" ]]; then
 		# Target destination file already exists.
 		# Move it to our backups directory
-		if [[ $DRY -eq 0 ]]; then
+		if [[ $DRY -eq 0 && $CHECKSUMS -eq 0 ]]; then
 			mv "$destination" "$BACKUP_DIR/$source"
 		fi
 
 	fi
 
 	printf ">> ${CYAN}%-15s${NC} ${GREEN}%10s${NC}\n" "$source" "$destination"
-	if [[ $DRY -eq 0 ]]; then
-		ln -s "$KONFIG_DIR/$source" "$destination"
+	if [[ $CHECKSUMS -eq 1 ]]; then
+		src_checksum=$(md5sum $source)
+		dst_checksum=$(md5sum $destination)
+
+		printf "> %s\n" "$src_checksum"
+		printf "> %s\n" "$dst_checksum"
+
+	elif [[ $DRY -eq 0 ]]; then
+		echo "executing symlink"
+		ln -s -v "$KONFIG_DIR/$source" "$destination"
 	fi
+	debug "DONE\n"
 done
 
 info "install complete!"
 
+[[ $CHECKSUMS -eq 1 ]] && exit 0
+
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
 	warn "run 'source ~/.zshrc' manually to apply changes"
 fi
+
+alias refresh="source $HOME/.zshrc"
