@@ -169,13 +169,12 @@ overrides = {
 }
 }
 )
-vim.cmd.colorscheme("gruvbox")	
-require("toggleterm").setup()
-require'nvim-treesitter.configs'.setup {
- enable = true,
- ensure_installed = { "c", "lua", "vim" },
- higlight = {
-   enable = true
- },
-}
+vim.cmd("colorscheme gruvbox")	
 EOF
+"require'nvim-treesitter.configs'.setup {
+" enable = true,
+" ensure_installed = { "c", "lua", "vim" },
+" higlight = {
+"   enable = true
+" },
+"}
