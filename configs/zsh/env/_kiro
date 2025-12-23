@@ -1,0 +1,10 @@
+alias kiro="kiro-cli"
+alias kiroc="kiro-cli chat --no-interactive --trust-all-tools"
+
+kci() { # Call kiro-cli directly (.e.g., kci Conduct a code review)
+    kiro-cli chat --trust-all-tools "$*"
+}
+
+kc() { # Call non-interactive kiro-cli (.e.g., kc Conduct a code review)
+    kiro-cli chat --no-interactive --trust-all-tools "$*"
+}

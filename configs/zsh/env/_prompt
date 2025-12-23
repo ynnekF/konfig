@@ -18,4 +18,11 @@ if [[ -n "$ZSH_VERSION" ]]; then
   setopt PROMPT_SUBST
 fi
 
-export PROMPT='${COLOR_YELLOW}$(parse_git_branch) %F{#bb3629}%1d > ${COLOR_DEF}'
+# Set machine name based on hostname
+if [[ $(hostname) == *"dev-dsk"* ]]; then
+  MACHINE_NAME="* CLOUD * "
+else
+  MACHINE_NAME=""
+fi
+
+export PROMPT='${COLOR_GIT}${MACHINE_NAME}${COLOR_YELLOW}$(parse_git_branch) %F{#bb3629}%1d > ${COLOR_DEF}'

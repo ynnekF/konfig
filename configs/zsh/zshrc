@@ -1,3 +1,6 @@
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/.local/share/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/zshrc.pre.zsh"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -91,7 +94,8 @@ SOLARIZED_THEME="dark"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aliases jump themes zoxide)
+# REMOVED: zsh-autosuggestions zsh-syntax-highlighting zoxide
+plugins=(git aliases jump themes zoxide ssh-agent)
 
 if [[ -f $ZSH/oh-my-zsh.sh ]]; then
         echo "Sourcing oh-my-zsh"
@@ -112,13 +116,62 @@ function _include() {
 }
 
 KONFIG_DIR="$HOME/konfig"
-_include "$KONFIG_DIR/_prompt"
-_include "$KONFIG_DIR/_aliases"
-_include "$KONFIG_DIR/_custom"
+
+ENV_DIR="$KONFIG_DIR/configs/zsh/env"
+for file in $(find "$ENV_DIR" -type f); do
+    [[ $(head -1 "$file" 2>/dev/null) == *"env: skip"* ]] && continue
+    _include "$file"
+done
+
+[[ -f "$KONFIG_DIR/private/_custom" ]] && _include "$KONFIG_DIR/private/_custom"
 
 #=======================================================================#
 #                             Environment                               #
 #=======================================================================#
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk # Replace with your path
+export PATH=$PATH:$JAVA_HOME/bin
 export PATH="$HOME/bin:$PATH"
+export PATH=$HOME/.toolbox/bin:$PATH
 
-eval "$(zoxide init zsh)"
+autoload -Uz compinit && compinit
+
+# Set up mise for runtime management
+eval "$(/home/ynnek/.local/bin/mise activate zsh)"
+source ~/.local/share/mise/completions.zsh
+
+# History file path
+HISTFILE=~/.zsh_history
+
+# Maximum number of history entries to save
+SAVEHIST=10000
+
+# Maximum number of history entries to keep in memory
+HISTSIZE=10000
+
+# Append history lists to the history file, rather than replacing it.
+setopt APPEND_HISTORY
+
+# Immediately append each command to the history file.
+setopt INC_APPEND_HISTORY
+
+# Share history between all running Zsh sessions.
+setopt SHARE_HISTORY
+
+# Autocomplete
+# autoload -U compinit
+# compinit
+
+# Zoxide
+# eval "$(zoxide init zsh)"
+# if you wish to use IMDS set AWS_EC2_METADATA_DISABLED=false
+
+export AWS_EC2_METADATA_DISABLED=true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/.local/share/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/zshrc.post.zsh"
+
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

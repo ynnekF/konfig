@@ -1,0 +1,44 @@
+filetype plugin indent on
+syntax on
+syntax enable
+
+set completeopt=noinsert,menuone,noselect 	" Modifies the auto-complete menu to behave more like an IDE.
+set clipboard=unnamedplus 			" Enables the clipboard between Vim/Neovim and other applications.
+set fillchars+=vert:\ 
+set wrap breakindent
+set background=dark
+set encoding=utf-8
+set conceallevel=1
+set termguicolors
+set scrolloff=15
+set textwidth=0
+set smarttab
+set wildmenu
+set showcmd
+set hidden
+set number
+set title
+
+let mapleader=";"
+
+"Normal
+nnoremap <Space> <Nop>
+nnoremap j <Nop><CR> 
+nnoremap k <Nop><cr>
+nnoremap l <Nop><cr>
+
+nnoremap <S-Tab> :bprevious<CR>
+nnoremap <Tab> :bnext<CR>
+
+" Jump front/end.
+nnoremap u 0
+nnoremap o $
+
+" Move lines.
+nnoremap <S-Down> :m+<CR>
+nnoremap <S-Up> :m-2<CR>
+nnoremap > >>
+nnoremap < <<
+
+" Fast save/exit editor.
+nnoremap <leader><Space> <cmd>x<cr>
