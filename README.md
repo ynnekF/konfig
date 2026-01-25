@@ -1,3 +1,19 @@
+#### GitHub Setup
+
+```
+> ssh -T git@github.com
+git@github.com: Permission denied (publickey).
+
+> ssh-add -l -E sha256
+The agent has no identities.
+
+> ssh-add ~/.ssh/github_rsa
+Identity added: <ident>
+
+> ssh -T git@github.com
+Hi <username>! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
 ##### Alternate approach with bare repo.
 
 Setup Repo.
