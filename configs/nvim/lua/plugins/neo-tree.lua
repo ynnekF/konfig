@@ -2,6 +2,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
+    close_if_last_window = true,
     keys = {
       {
         "<leader>fe",
@@ -29,7 +30,7 @@ return {
       {
         "<leader>be",
         function()
-          require("neo-tree.command").execute({ source = "buffers", toggle = true })
+          require("neo-tree.command").execute({ source = "buffers", toggle = true, position = "right" })
         end,
         desc = "Buffer Explorer",
       },
