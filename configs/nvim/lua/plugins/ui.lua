@@ -2,14 +2,14 @@ return {
   --- <leader> mm toggle minimap
   {
     "gorbit99/codewindow.nvim",
-    enabled = true,
+    enabled = false,
     config = function()
       local codewindow = require("codewindow")
       codewindow.setup()
       codewindow.apply_default_keybinds()
     end,
   },
-  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+  {'akinsho/bufferline.nvim', version = "*", lazy = false, dependencies = 'nvim-tree/nvim-web-devicons'},
   -- {
   --   "akinsho/bufferline.nvim",
   --   enabled = true,
