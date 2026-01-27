@@ -1,15 +1,9 @@
 return {
   "folke/snacks.nvim",
   enabled = true,
+  priority = 1000,
+  lazy = false,
   opts = {
-    indent = { enabled = true },
-    input = { enabled = true },
-    notifier = { enabled = true },
-    scope = { enabled = true },
-    scroll = { enabled = true },
-    statuscolumn = { enabled = true }, -- we set this in options.lua
-    --   toggle = { map = LazyVim.safe_keymap_set },
-    words = { enabled = true },
     keys = {
       {
         "<leader>n",
@@ -30,6 +24,18 @@ return {
         desc = "Dismiss All Notifications",
       },
     },
+    bigfile = { enabled = false },
+    explorer = { enabled = false },
+    indent = { enabled = false },
+    input = { enabled = false },
+    picker = { enabled = false },
+    notifier = { enabled = true },
+    quickfile = { enabled = false },
+    scope = { enabled = false },
+    scroll = { enabled = false },
+    statuscolumn = { enabled = false },
+    words = { enabled = false },
+    terminal = { enabled = false },
     dashboard = {
       preset = {
         pick = function(cmd, opts)

@@ -1,17 +1,7 @@
--- local spinners = require("noice.util.spinners")
--- spinners.spinners["moon"] = {
---     -- stylua: ignore
---     frames = {
---         " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
---         " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "
---     },
---     interval = 80,
--- }
-
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
-  enabled = true,
+  enabled = false,
   opts = function()
     local icons = _G.Config.config.icons
     return {

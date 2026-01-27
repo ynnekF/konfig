@@ -3,6 +3,7 @@ package.path = package.path .. ";" .. vim.fn.stdpath("config") .. "/lua/util/?.l
 
 
 require("config.lazy")
+require ("config.keymaps")
 
 local Config = require("config")
 Config.init()
@@ -23,3 +24,4 @@ vim.api.nvim_create_user_command("PrintConfig", PrintConfig, {})
 --   -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
 --   install_dir = vim.fn.stdpath('data') .. '/site'
 -- }
+require("config.kiro")

@@ -3,6 +3,7 @@ return {
     "nvim-telescope/telescope.nvim",
     enabled = true,
     version = "*",
+    lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       -- optional but recommended
@@ -24,38 +25,22 @@ return {
       { "<leader>/", false },
       -- change a keymap
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-      -- add a keymap to browse plugin files
       {
-        "<leader>fp",
-        function()
-          require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
-        end,
-        desc = "Find Plugin File",
-      },
-      {
-        "<leader>sw",
-        function()
-          require("telescope.builtin").grep_string({ search = vim.fn.input("Grep for > ") })
-        end,
-        desc = "Grep for String",
-      },
-      {
-        "<leader>sf",
+        "<leader>fw",
         function()
           require("telescope.builtin").live_grep()
         end,
         desc = "Live Grep",
       },
       {
-        "<leader>sg",
+        "<leader>fg",
         function()
           require("telescope.builtin").git_files()
         end,
         desc = "Git Files",
       },
-      -- :lua require('telescope.builtin').live_grep({ cwd = vim.fn.expand('%:p:h') })
       {
-        "<leader>ss",
+        "<leader>FF",
         function()
           require("telescope.builtin").live_grep({ cwd = vim.fn.expand('%:p:h') })
         end,

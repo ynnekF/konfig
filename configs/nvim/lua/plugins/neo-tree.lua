@@ -2,7 +2,6 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
-    close_if_last_window = true,
     keys = {
       {
         "<leader>fe",
@@ -58,12 +57,18 @@ return {
       })
     end,
     opts = {
+      close_if_last_window = true,
       sources = { "filesystem", "buffers", "git_status" },
       open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
       filesystem = {
         bind_to_cwd = false,
         follow_current_file = { enabled = true },
         use_libuv_file_watcher = true,
+        filtered_items = {
+          hide_by_name = {
+            "bin",
+          }
+        }
       },
       window = {
         mappings = {

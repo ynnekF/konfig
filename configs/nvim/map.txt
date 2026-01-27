@@ -33,3 +33,9 @@ gi: Go to implementation
 gr: Go to reference
 [d: Go to next diagnostic
 ]d: Go to previous diagnostic
+
+# Comments
+gc{motion}
+gcc
+gcv
+Visual + gc
