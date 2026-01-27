@@ -9,5 +9,5 @@ return {
     enabled = true,
     dependencies = { "neovim/nvim-lspconfig" },
     opts = {},
-  }
+  },
 }

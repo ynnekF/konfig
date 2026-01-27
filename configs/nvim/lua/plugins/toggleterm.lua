@@ -1,15 +1,15 @@
 return {
   {
-    'akinsho/toggleterm.nvim',
+    "akinsho/toggleterm.nvim",
     enabled = true,
     lazy = false,
     version = "*",
     opts = {
-      direction = "horizontal"
+      direction = "horizontal",
     },
     keys = {
-      { "<leader>t", "<cmd>ToggleTerm<cr>", desc = "Open ToggleTerm" },
+      -- { "<leader>t", "<cmd>ToggleTerm<cr>", desc = "Open ToggleTerm" },
     },
-    config = true
-  }
+    config = true,
+  },
 }

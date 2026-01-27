@@ -67,8 +67,8 @@ return {
         filtered_items = {
           hide_by_name = {
             "bin",
-          }
-        }
+          },
+        },
       },
       window = {
         mappings = {

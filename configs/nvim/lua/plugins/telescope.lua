@@ -42,17 +42,17 @@ return {
       {
         "<leader>FF",
         function()
-          require("telescope.builtin").live_grep({ cwd = vim.fn.expand('%:p:h') })
+          require("telescope.builtin").live_grep({ cwd = vim.fn.expand("%:p:h") })
         end,
         desc = "Grep cur dir",
       },
       {
         "<leader>gw",
         function()
-          require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>"), cwd = vim.fn.expand('%:p:h') })
+          require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>"), cwd = vim.fn.expand("%:p:h") })
         end,
         desc = "Grep cur word",
-      }
+      },
     },
     config = function()
       require("telescope").setup({
@@ -67,7 +67,7 @@ return {
             layout_strategy = "center", -- centers the popup on screen
           },
           find_files = {
-            theme = "ivy"
+            theme = "ivy",
           },
         },
       })

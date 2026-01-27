@@ -36,11 +36,11 @@ return {
     statuscolumn = { enabled = false },
     words = { enabled = false },
     terminal = { enabled = false },
-		styles = {
-			notification = {
-				wo = { wrap = true }
-			}
-		},
+    styles = {
+      notification = {
+        wo = { wrap = true },
+      },
+    },
     dashboard = {
       preset = {
         pick = function(cmd, opts)
