@@ -1,10 +1,21 @@
 return {
   {
     "folke/flash.nvim",
+    enabled = true,
     event = "VeryLazy",
     ---@type Flash.Config
-    opts = {},
+    opts = {
+      modes = {
+        char = {
+          keys = {},
+        },
+      },
+    },
     keys = {
+      { "f", false, { desc = "Flash binding" } },
+      { "F", false, { desc = "Flash binding" } },
+      { "t", false, { desc = "Flash binding" } },
+      { "T", false, { desc = "Flash binding" } },
       {
         "s",
         mode = { "n", "x", "o" },
@@ -13,10 +24,6 @@ return {
         end,
         desc = "flash",
       },
-      -- { "s", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "flash treesitter" },
-      -- { "r", mode = "o", function() require("flash").remote() end, desc = "remote flash" },
-      -- { "r", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "treesitter search" },
-      -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "toggle flash search" },
     },
   },
 }

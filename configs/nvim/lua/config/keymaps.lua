@@ -9,6 +9,9 @@ map("n", "j", "<Nop>", { desc = "Disable default nav. key" })
 map("n", "k", "<Nop>", { desc = "Disable default nav. key" })
 map("n", "l", "<Nop>", { desc = "Disable default nav. key" })
 
+map("n", "f", "<Nop>", { desc = "Disable f" })
+map("n", "t", "<Nop>", { desc = "Disable t" })
+
 map("n", "<C-h>", "<C-w>h", { desc = "Go to L window " })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to R window " })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to B window " })
