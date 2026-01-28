@@ -3,7 +3,6 @@
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -98,10 +97,9 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(git aliases jump zoxide ssh-agent)
 
 if [[ -f $ZSH/oh-my-zsh.sh ]]; then
-        echo "Sourcing oh-my-zsh"
-        source $ZSH/oh-my-zsh.sh
+        # echo "Sourcing oh-my-zsh"
+        # source $ZSH/oh-my-zsh.sh
 fi
-
 #=======================================================================#
 #                            Internal Plugins                           #
 #=======================================================================#
@@ -109,7 +107,7 @@ fi
 function _include() {
   if [[ -f "$1" ]]; then
         source "$1"
-        echo "'$1' included"
+        # echo "'$1' included"
   else
         echo "'$1' not found"
   fi
@@ -136,8 +134,8 @@ export PATH=$HOME/.toolbox/bin:$PATH
 autoload -Uz compinit && compinit
 
 # Set up mise for runtime management
-eval "$(/home/ynnek/.local/bin/mise activate zsh)"
-source ~/.local/share/mise/completions.zsh
+[[ -f "/home/ynnek/.local/bin/mise" ]] && eval "$(/home/ynnek/.local/bin/mise activate zsh)"
+[[ -f "/home/ynnek/.local/bin/mise" ]] && source ~/.local/share/mise/completions.zsh
 
 # History file path
 HISTFILE=~/.zsh_history
