@@ -98,7 +98,7 @@ plugins=(git aliases jump zoxide ssh-agent)
 
 if [[ -f $ZSH/oh-my-zsh.sh ]]; then
         # echo "Sourcing oh-my-zsh"
-        # source $ZSH/oh-my-zsh.sh
+        source $ZSH/oh-my-zsh.sh
 fi
 #=======================================================================#
 #                            Internal Plugins                           #
@@ -134,8 +134,8 @@ export PATH=$HOME/.toolbox/bin:$PATH
 autoload -Uz compinit && compinit
 
 # Set up mise for runtime management
-[[ -f "/home/ynnek/.local/bin/mise" ]] && eval "$(/home/ynnek/.local/bin/mise activate zsh)"
-[[ -f "/home/ynnek/.local/bin/mise" ]] && source ~/.local/share/mise/completions.zsh
+[[ -d "/home/ynnek/.local/bin/mise" ]] && eval "$(/home/ynnek/.local/bin/mise activate zsh)"
+[[ -d "/home/ynnek/.local/bin/mise" ]] && source ~/.local/share/mise/completions.zsh
 
 # History file path
 HISTFILE=~/.zsh_history
