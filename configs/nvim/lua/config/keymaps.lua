@@ -81,9 +81,9 @@ map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- Terminal
-map("n", "<leader>tm", "<CMD>ToggleTerm 1<CR>")
-map("n", "<leader>tm2", "<CMD>ToggleTerm 2<CR>")
-map("n", "<leader>tm3", "<CMD>ToggleTerm 3<CR>")
+-- map("n", "<leader>tm", "<CMD>ToggleTerm 1<CR>")
+-- map("n", "<leader>tm2", "<CMD>ToggleTerm 2<CR>")
+-- map("n", "<leader>tm3", "<CMD>ToggleTerm 3<CR>")
 vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { silent = true, noremap = true })
 vim.api.nvim_set_keymap("n", "<Esc><Esc>", "<C-\\><C-n><CMD>ToggleTerm<CR>", { silent = true, noremap = true })
 
