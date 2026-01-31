@@ -9,7 +9,7 @@ return {
       codewindow.apply_default_keybinds()
     end,
   },
-  { "akinsho/bufferline.nvim", version = "*", lazy = false, dependencies = "nvim-tree/nvim-web-devicons" },
+  -- { "akinsho/bufferline.nvim", version = "*", lazy = false, dependencies = "nvim-tree/nvim-web-devicons" },
   -- {
   --   "akinsho/bufferline.nvim",
   --   enabled = true,

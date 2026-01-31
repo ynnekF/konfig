@@ -14,11 +14,11 @@ Config.setup({})
 function PrintConfig()
   local output = vim.inspect(_G.Config)
   print(output)
-	--   local file = io.open("/home/ynnek/konfig/configs/nvim/lua/config/temp.lua", "w")
-	--   if file then
-	--     file:write(output)
-	--     file:close()
-	--   end
+  --   local file = io.open("/home/ynnek/konfig/configs/nvim/lua/config/temp.lua", "w")
+  --   if file then
+  --     file:write(output)
+  --     file:close()
+  --   end
 end
 
 vim.api.nvim_create_user_command("PrintConfig", PrintConfig, {})

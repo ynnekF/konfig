@@ -5,6 +5,7 @@ return {
   dependencies = {
     { "mason-org/mason-lspconfig.nvim" },
     { "mason-org/mason.nvim" },
+    { "saghen/blink.cmp" },
   },
   config = function()
     require("mason").setup()

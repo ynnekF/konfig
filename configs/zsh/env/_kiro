@@ -1,4 +1,4 @@
-alias kiro="kiro-cli"
+alias kiro="kiro-cli chat --trust-tools=glob,read,code,introspect,web_search,grep,@builder-mcp,@awslabs.aws-documentation-mcp-server"
 alias kiroc="kiro-cli chat --no-interactive --trust-all-tools"
 
 kci() { # Call kiro-cli directly (.e.g., kci Conduct a code review)
