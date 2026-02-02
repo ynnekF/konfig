@@ -67,7 +67,7 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
 -- Normal mode
-map({ "v", "i" }, "jf", "<ESC>")
+map({ "v", "i", "c" }, "jf", "<ESC>")
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
