@@ -6,7 +6,7 @@ return {
     ---@type Flash.Config
     opts = {
       modes = {
-        search = { enabled = true },
+        search = { enabled = true, caseSensitive = false },
         char = {
           keys = {},
         },
