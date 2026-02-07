@@ -1,41 +1,22 @@
+[f/F - function
+[c/C - class
+[a/A - param.
+[h/H - hunk
 #### Telescope
-<leader>/   - find_files
-<leader>fp  - find_plugin_files
-<leader>sw  - grep_string
-<leader>sf  - live_grep
-<leader>sg  - git_files
-
-#### Snacks
-<leader>rf  - old_files
+<leader>ff  - find_files
+<leader>fw  - grep_string
+<leader>fg  - git_files
+<leader>fr  - recent_files (snacks)
 <leader>cf  - config_files
-
 #### Neo-tree
-<leader>fe  - explorer.root_dir
-<leader>fE  - explorer.cwd
-<leader>ge  - explorer.git
-<leader>be  - explorer.buffer
-
-#### Harpoon
-<leader>H   - harpoon_file
-<leader>h   - harpoon_menu
-<leader>ht  - harpoon_next
-<leader>hp  - harpoon_prev
-
+<leader>e/E, <leader>ge, <leader>be
 #### LSP
-
-gD: Go to declaration
-gd: Go to definition
+g+d/i/D: Go to definition/implementation/declaration
+gr: Go to reference
 K: Show hover information
-gi: Go to implementation
 <c-k>: Show signature help
 <leader>rn: Rename symbol
 <leader>ca: Code action
-gr: Go to reference
 [d: Go to next diagnostic
 ]d: Go to previous diagnostic
 
-# Comments
-gc{motion}
-gcc
-gcv
-Visual + gc
