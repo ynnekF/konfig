@@ -115,3 +115,5 @@ opt.wrap = false -- Disable line wrap
 opt.hidden = true
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
+
+-- vim.opt.guicursor = "n-v-i-c:block-Cursor"

@@ -30,6 +30,7 @@ return {
         accept = { auto_brackets = { enabled = true } },
         -- TODO enable up/down in cmdline
         menu = { auto_show = true },
+        ghost_text = { enabled = true },
       },
       -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept, C-n/C-p for up/down)
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys for up/down)
@@ -47,7 +48,7 @@ return {
         -- Sets the fallback highlight groups to nvim-cmp's highlight groups
         -- Useful for when your theme doesn't support blink.cmp
         -- Will be removed in a future release
-        use_nvim_cmp_as_default = true,
+        use_nvim_cmp_as_default = false,
         -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = "mono",
