@@ -21,5 +21,5 @@ function PrintConfig()
   --   end
 end
 
-vim.api.nvim_create_user_command("PrintConfig", PrintConfig, {})
+-- vim.api.nvim_create_user_command("PrintConfig", PrintConfig, {})
 vim.cmd.colorscheme("kanagawa-dragon")

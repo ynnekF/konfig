@@ -16,11 +16,23 @@ return {
         "clangd",
         "bashls",
         "ts_ls",
-        "rust_analyzer",
       },
       automatic_enable = {
         exclude = {},
       },
     })
+
+    vim.lsp.config("rust_analyzer", {
+      cmd = { vim.fn.expand("~/.toolbox/bin/rust-analyzer") },
+      filetypes = { "rust" },
+      root_markers = { "Cargo.toml" },
+      settings = {
+        ["rust-analyzer"] = {
+          cargo = { allFeatures = true },
+          checkOnSave = { command = "clippy" },
+        },
+      },
+    })
+    vim.lsp.enable("rust_analyzer")
   end,
 }
