@@ -37,9 +37,6 @@ map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
 
-Snacks.toggle.zoom():map("<leader>wm"):map("<leader>uZ")
-Snacks.toggle.zen():map("<leader>uz")
-
 -- Buffers
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
@@ -56,7 +53,6 @@ map("n", "<S-Up>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Mo
 map("n", "<S-Down>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
 map("i", "<S-Up>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
 map("i", "<S-Down>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-
 map("v", "<S-Up>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 map("v", "<S-Down>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 
@@ -84,13 +80,6 @@ map("v", ">", ">gv")
 -- Commenting
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
-
--- Terminal
--- map("n", "<leader>tm", "<CMD>ToggleTerm 1<CR>")
--- map("n", "<leader>tm2", "<CMD>ToggleTerm 2<CR>")
--- map("n", "<leader>tm3", "<CMD>ToggleTerm 3<CR>")
--- vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { silent = true, noremap = true })
--- vim.api.nvim_set_keymap("n", "<Esc><Esc>", "<C-\\><C-n><CMD>ToggleTerm<CR>", { silent = true, noremap = true })
 
 -- Telescope
 map("n", "<leader>ff", "<cmd> Telescope find_files <CR>")
@@ -133,3 +122,10 @@ map("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
 map("n", "<leader>ma", ":marks<CR>")
 map("n", "<leader>mc", ":delm! | delm A-Z0-9<CR>")
 map("n", "<leader>mw", ":wshada!<CR>")
+
+-- Terminal
+-- map("n", "<leader>tm", "<CMD>ToggleTerm 1<CR>")
+-- map("n", "<leader>tm2", "<CMD>ToggleTerm 2<CR>")
+-- map("n", "<leader>tm3", "<CMD>ToggleTerm 3<CR>")
+-- vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { silent = true, noremap = true })
+-- vim.api.nvim_set_keymap("n", "<Esc><Esc>", "<C-\\><C-n><CMD>ToggleTerm<CR>", { silent = true, noremap = true })
