@@ -42,7 +42,12 @@ return {
       -- C-k: Toggle signature help
       --
       -- See the full "keymap" documentation for information on defining your own keymap.
-      keymap = { preset = "super-tab" },
+      keymap = {
+        preset = "super-tab",
+        -- Disable arrow keys
+        ["<Up>"] = false,
+        ["<Down>"] = false,
+      },
 
       appearance = {
         -- Sets the fallback highlight groups to nvim-cmp's highlight groups

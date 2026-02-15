@@ -3,27 +3,41 @@ return {
   enabled = true,
   priority = 1000,
   lazy = false,
-  opts = {
-    keys = {
-      {
-        "<leader>n",
-        function()
-          if Snacks.config.picker and Snacks.config.picker.enabled then
-            Snacks.picker.notifications()
-          else
-            Snacks.notifier.show_history()
-          end
-        end,
-        desc = "Notification History",
-      },
-      {
-        "<leader>un",
-        function()
-          Snacks.notifier.hide()
-        end,
-        desc = "Dismiss All Notifications",
-      },
+  keys = {
+    q = "hide",
+    {
+      "<leader>n",
+      function()
+        Snacks.picker.notifications()
+      end,
+      desc = "Notification History",
     },
+    {
+      "<leader>un",
+      function()
+        Snacks.notifier.hide()
+      end,
+      desc = "Dismiss All Notifications",
+    },
+    -- { "<leader>t", function() Snacks.terminal.toggle() end, desc = "Toggle terminal", },
+    term_normal = {
+      "<esc>",
+      function(self)
+        self.esc_timer = self.esc_timer or (vim.uv or vim.loop).new_timer()
+        if self.esc_timer:is_active() then
+          self.esc_timer:stop()
+          vim.cmd("stopinsert")
+        else
+          self.esc_timer:start(200, 0, function() end)
+          return "<esc>"
+        end
+      end,
+      mode = "t",
+      expr = true,
+      desc = "Double escape to normal mode",
+    },
+  },
+  opts = {
     bigfile = { enabled = false },
     explorer = { enabled = false },
     indent = { enabled = false },
@@ -35,11 +49,15 @@ return {
     scroll = { enabled = false },
     statuscolumn = { enabled = false },
     words = { enabled = false },
-    terminal = { enabled = false },
     styles = {
       notification = {
         wo = { wrap = true },
       },
+    },
+    terminal = {
+      stack = true,
+      win = { position = "float" },
+      enabled = true,
     },
     dashboard = {
       preset = {
