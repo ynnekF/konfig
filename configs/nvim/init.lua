@@ -23,3 +23,7 @@ end
 
 -- vim.api.nvim_create_user_command("PrintConfig", PrintConfig, {})
 vim.cmd.colorscheme("kanagawa-dragon")
+vim.opt.guicursor = "a:block-Cursor/iCursor"
+
+
+vim.lsp.set_log_level("off")

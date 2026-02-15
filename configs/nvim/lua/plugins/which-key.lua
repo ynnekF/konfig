@@ -5,6 +5,11 @@ return {
     event = "VeryLazy",
     loop = true,
     opts = {
+      plugins = {
+        marks = false,
+        registers = false,
+        spelling = false,
+      },
       preset = "modern",
       -- your configuration comes here
       -- or leave it empty to use the default settings
@@ -69,6 +74,7 @@ return {
       bt = {},
     },
     keys = {
+      { "'", false },
       {
         "<leader>?",
         function()

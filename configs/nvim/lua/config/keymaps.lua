@@ -3,41 +3,33 @@ map("n", "<Space>", "<Nop>")
 vim.g.leader = " "
 
 --[[
-G (Shift + g): Move to the last line of the file. (A number before G, like 10G, moves to that specific line number).
-J (Shift + j): Join the current line with the line below it.
-O (Shift + o): Open a new line above the current line and enter Insert mode.
-A (Shift + a): Jump to the end of the current line and enter Insert mode.
-I (Shift + i): Jump to the first non-blank character of the current line and enter Insert mode.
-D (Shift + d): Delete from the cursor to the end of the line.
-Y (Shift + y): Yank (copy) the current line.
-P (Shift + p): Paste the copied/deleted text before the cursor (lowercase p pastes after).
-X (Shift + x): Delete the character before the cursor (lowercase x deletes the character under the cursor).
-~ (Shift + `): Switch the case of the character under the cursor
+Shift + g -- Move to the last line of the file. (A number before G, like 10G, moves to that specific line number).
+Shift + j -- Join the current line with the line below it.
+Shift + o -- Open a new line above the current line and enter Insert mode.
+Shift + a -- Jump to the end of the current line and enter Insert mode.
+Shift + i -- Jump to the first non-blank character of the current line and enter Insert mode.
+Shift + d -- Delete from the cursor to the end of the line.
+Shift + y -- Yank (copy) the current line.
+Shift + p -- Paste the copied/deleted text before the cursor (lowercase p pastes after).
+Shift + x -- Delete the character before the cursor (lowercase x deletes the character under the cursor).
+Shift + ` -- Switch the case of the character under the cursor
+Ctrl + o  -- Jump to the older position in the jump list (previous location).
+Ctrl + i  -- Jump to the newer position in the jump list (next location).
+g;        -- Jump to the older position in the change list (previous change).
+g,        -- Jump to the newer position in the change list (next change).
+[a/A      -- Prev param. start/end 
+[c/C      -- Prev param. start/end
+[f/F      -- Prev func. start/end
+[h/H      -- Next/prev hunk.
 
-Workshop
-map("n", "<S-h>", "<cmd>bp<cr>", { desc = "Prev Buffer" })
-map("n", "<S-l>", "<cmd>bn<cr>", { desc = "Next Buffer" })
-map("n", "h", "<Nop>", { desc = "Disable default nav. key" })
-map("n", "j", "<Nop>", { desc = "Disable default nav. key" })
-map("n", "k", "<Nop>", { desc = "Disable default nav. key" })
-map("n", "l", "<Nop>", { desc = "Disable default nav. key" })
-map("n", "{", "{zz")
-map("n", "}", "}zz")
-map("n", "gs", function() require("telescope.builtin").lsp_definitions() end,     { noremap = true, silent = true })
-map("n", "gr", function() require("telescope.builtin").lsp_references() end,      { noremap = true, silent = true })
-map("n", "gi", function() require("telescope.builtin").lsp_implementations() end, { noremap = true, silent = true })
-map("n", "gt", function() require("telescope.builtin").lsp_type_definitions() end, { noremap = true, silent = true })
-map("n", "gS", function() require("telescope.builtin").lsp_document_symbols() end, { noremap = true, silent = true })
-
-,,
-,.
-,/
-
-f/F
-
-marks
-
-shift + hjkl;
+vim.keymap.set options
+noremap = true, -- Do not allow remapping of the mapped key
+silent = true, -- Do not show the command in the command line when the key is pressed
+expr = true,   -- The right-hand side of the mapping is evaluated as an expression
+unique = true, -- Ensure that the mapping is unique and does not override existing mappings
+nowait = true, -- Do not wait for further key sequences after the mapped key is pressed
+force = true,  -- Force the mapping even if it already exists
+script = true, -- Allow the mapping to be used in scripts
 
 Marks
 	`.    - Jump to position where last change in current buffer
@@ -50,68 +42,65 @@ Marks
 	`</`> - Jump to beginning/end of last visual selection
 --]]
 
-map("n", "<leader>pv", vim.cmd.Ex)
-map("n", "<leader>ma", ":marks<CR>")
-map("n", "<leader>mc", ":delm! | delm A-Z0-9<CR>")
-map("n", "<leader>mw", ":wshada!<CR>")
+map("n", "t", "<Nop>", { desc = "Disable default nav. key" })
 
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
-map({ "v", "i", "c" }, "jf", "<ESC>", { desc = "To normal mode" })
+-- Core
+map({ "v", "i", "c" }, "jf", "<ESC>", { noremap = true, desc = "To normal mode" })
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
 
-map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
-map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
-map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
-map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
-map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
-map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
+-- Search navigation (direction-aware)
+local next_search = "'Nn'[v:searchforward]"
+local prev_search = "'nN'[v:searchforward]"
+map({ "o", "x" }, "n", next_search, { expr = true, desc = "Next Search Result" })
+map({ "o", "x" }, "N", prev_search, { expr = true, desc = "Prev Search Result" })
+map("n", "n", next_search .. ".'zv'", { expr = true, desc = "Next Search Result" })
+map("n", "N", prev_search .. ".'zv'", { expr = true, desc = "Prev Search Result" })
 
 -- Window Navigation
+for _, key in ipairs({ "h", "j", "k", "l" }) do
+  map("n", "<C-" .. key .. ">", "<C-w>" .. key)
+  map("t", "<C-" .. key .. ">", "<cmd>wincmd " .. key .. "<CR>")
+end
+map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
+map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+
 -- stylua: ignore start
-map("n", "<C-h>", "<C-w>h", { desc = "Go to L window " })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to R window " })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to B window " })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to T window " })
-
-map("t", "<C-h>", "<cmd>wincmd h<CR>", { desc = "Go to L window" })
-map("t", "<C-l>", "<cmd>wincmd l<CR>", { desc = "Go to R window" })
-map("t", "<C-j>", "<cmd>wincmd j<CR>", { desc = "Go to B window" })
-map("t", "<C-k>", "<cmd>wincmd k<CR>", { desc = "Go to T window" })
-
-map("n", "<leader>-",  "<C-W>s",  { desc = "Split Window Below", remap = true })
-map("n", "<leader>|",  "<C-W>v",  { desc = "Split Window Right", remap = true })
-map("n", "<leader>wd", "<C-W>c",  { desc = "Delete Window",      remap = true })
-
-map("n", "<C-Up>",     "<cmd>resize +2<cr>",          { desc = "Increase Window Height" })
-map("n", "<C-Down>",   "<cmd>resize -2<cr>",          { desc = "Decrease Window Height" })
-map("n", "<C-Left>",   "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-map("n", "<C-Right>",  "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
-
-map("n", "<leader>bd", function() Snacks.bufdelete() end,       { desc = "Delete Buffer" })
+map("n", "<leader>bd", function() Snacks.bufdelete() end, { desc = "Delete Buffer" })
 map("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete Other Buffers" })
+-- stylua: ignore end
 
--- Line Navigation
-map("n", "<S-Up>",   "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+-- Navigation
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map({ "n", "o", "x" }, ";", "f", { noremap = true })
+map({ "n", "o", "x" }, "f", "F", { noremap = true })
+
+-- Line movement
+map("n", "<S-Up>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
 map("n", "<S-Down>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
-map("i", "<S-Up>",   "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+map("i", "<S-Up>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
 map("i", "<S-Down>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map("v", "<S-Up>",   ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
+map("v", "<S-Up>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 map("v", "<S-Down>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 
 -- Code
 map("n", "K", ":lua vim.lsp.buf.hover()<CR>")
 map("v", "<", "<gv", { desc = "Indent" })
 map("v", ">", ">gv", { desc = "Indent" })
-map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
-map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+map("n", "cc", "gcc", { remap = true, desc = "Toggle comment line" })
+map("v", "cc", "gc", { remap = true, desc = "Toggle comment block" })
+map("n", "cco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
+map("n", "ccO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 map("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
 map("n", "<leader>gd", ":lua vim.lsp.buf.definition()<CR>")
 map("n", "<leader>gr", ":lua vim.lsp.buf.references()<CR>")
 map("n", "<leader>gi", ":lua vim.lsp.buf.implementation()<CR>")
 map("n", "<leader>gs", ":lua vim.lsp.buf.definition()<CR>")
---stylua: ignore end
 
 -- Telescope
 map("n", "<leader>km", "<cmd>lua require('telescope.builtin').keymaps()<CR>", { desc = "View Keymaps" })
@@ -127,7 +116,7 @@ map("n", "<leader>fj", "<cmd> Telescope jumplist <CR>")
 
 -- Snacks + pickers
 map("n", "<leader>cf", ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})<CR>")
-map("n", "<leader>sm", ":lua Snacks.picker.marks()<CR>")
+map("n", "<leader>m", ":lua Snacks.picker.marks()<CR>")
 map("n", "<leader>sz", ":lua Snacks.zen()<CR>")
 map({ "n", "t" }, ",.", function()
   if vim.bo.buftype == "terminal" then
@@ -138,4 +127,3 @@ end, { desc = "Toggle terminal" })
 
 -- Copilot
 map("n", "cp", ":Copilot panel<CR>", { desc = "Open Copilot Panel" })
-
