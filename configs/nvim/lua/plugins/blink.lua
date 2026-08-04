@@ -43,10 +43,13 @@ return {
       --
       -- See the full "keymap" documentation for information on defining your own keymap.
       keymap = {
-        preset = "super-tab",
+        preset = "default",
         -- Disable arrow keys
         ["<Up>"] = false,
         ["<Down>"] = false,
+        ["<C-y>"] = { "accept", "fallback" },
+        ["<C-j>"] = { "select_next", "fallback" },
+        ["<C-k>"] = { "select_prev", "fallback" },
       },
 
       appearance = {

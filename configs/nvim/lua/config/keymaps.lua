@@ -118,12 +118,15 @@ map("n", "<leader>fj", "<cmd> Telescope jumplist <CR>")
 map("n", "<leader>cf", ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})<CR>")
 map("n", "<leader>m", ":lua Snacks.picker.marks()<CR>")
 map("n", "<leader>sz", ":lua Snacks.zen()<CR>")
-map({ "n", "t" }, ",.", function()
-  if vim.bo.buftype == "terminal" then
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
-  end
-  require("snacks.terminal").toggle()
-end, { desc = "Toggle terminal" })
+
+-- Snacks Terminal
+local open_terminal = function(count, opts)
+	return function()
+		Snacks.terminal.toggle(nil, { count = count })
+	end
+end
+map({"n", "t" }, ",.", open_terminal(1), { desc = "Toggle terminal 1" })
+map({"n", "t" }, ",,", open_terminal(2), { desc = "Toggle terminal 2" })
 
 -- Copilot
 map("n", "cp", ":Copilot panel<CR>", { desc = "Open Copilot Panel" })

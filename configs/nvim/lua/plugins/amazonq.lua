@@ -1,7 +1,7 @@
 return {
   {
     name = "amazonq",
-    enabled = false,
+    enabled = true,
     url = "https://github.com/awslabs/amazonq.nvim.git",
     opts = {
       ssoStartUrl = "https://amzn.awsapps.com/start",
